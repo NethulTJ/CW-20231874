@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.cw;
 
-/**
- *
- * @author Nethul Jayasuriya
- */
 import jakarta.ws.rs.ApplicationPath;
-import jakarta.ws.rs.core.Application;
+import org.glassfish.jersey.server.ResourceConfig;
 
-public class RestApplication {
-    
+@ApplicationPath("/api/v1")
+public class RestApplication extends ResourceConfig {
+    public RestApplication() {
+        register(ApiResource.class);
+        register(ApiExceptionMapper.class);
+        register(ApiLoggingFilter.class);
+    }
 }
