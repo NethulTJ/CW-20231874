@@ -26,7 +26,11 @@ public class ApiExceptionMapper implements ExceptionMapper<Throwable> {
         }
 
         if (exception instanceof BadRequestException) {
-            return build(Response.Status.BAD_REQUEST, exception.getMessage());
+            String message = exception.getMessage();
+            if (message == null || message.isBlank() || message.contains("Error parsing entity")) {
+                message = "The request body is invalid or malformed.";
+            }
+            return build(Response.Status.BAD_REQUEST, message);
         }
 
         if (exception instanceof WebApplicationException webException) {
@@ -37,7 +41,7 @@ public class ApiExceptionMapper implements ExceptionMapper<Throwable> {
         return build(Response.Status.INTERNAL_SERVER_ERROR, "An unexpected server error occurred.");
     }
 
-    private Response build(Response.Status status, String message) {
+    private Response build(Response.StatusType status, String message) {
         String path = uriInfo == null ? "" : "/" + uriInfo.getPath();
         CampusData.ErrorBody body = new CampusData.ErrorBody(status.getStatusCode(), status.getReasonPhrase(), message, path);
         return Response.status(status)
