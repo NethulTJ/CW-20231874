@@ -114,11 +114,14 @@ public class ApiResource {
         if (sensor == null) {
             throw new BadRequestException("Sensor body is required.");
         }
+        if (sensor.getRoomId() == null || sensor.getRoomId().isBlank()) {
+            throw new ApiException(ApiException.UNPROCESSABLE_ENTITY, "roomId is required.");
+        }
 
         CampusData.Room room = CampusData.ROOMS.get(sensor.getRoomId());
         if (room == null) {
-            throw new ApiException(Response.Status.BAD_REQUEST, 
-        "roomId " + sensor.getRoomId() + " does not exist.");
+            throw new ApiException(ApiException.UNPROCESSABLE_ENTITY,
+                    "roomId " + sensor.getRoomId() + " does not exist.");
         }
 
         sensor.setId(CampusData.makeId(sensor.getId(), "SENSOR"));
@@ -157,6 +160,9 @@ public class ApiResource {
         public Response addReading(CampusData.SensorReading reading, @Context UriInfo uriInfo) {
             if (reading == null) {
                 throw new BadRequestException("Reading body is required.");
+            }
+            if (Double.isNaN(reading.getValue()) || Double.isInfinite(reading.getValue())) {
+                throw new BadRequestException("Reading value must be a valid number.");
             }
 
             CampusData.Sensor sensor = CampusData.SENSORS.get(sensorId);
