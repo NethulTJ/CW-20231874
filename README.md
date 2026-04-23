@@ -1,6 +1,6 @@
 # Smart Campus API Coursework
 
-This project follows the tutorial style while matching the coursework specification:
+This project follows:
 
 - Maven WAR project
 - Jersey servlet deployment
@@ -8,6 +8,27 @@ This project follows the tutorial style while matching the coursework specificat
 - `web.xml` configuration
 - `javax.ws.rs.*` imports
 - `Application` subclass with `@ApplicationPath("/api/v1")`
+
+## API Structure
+
+Base URL:
+
+```text
+http://localhost:8080/CW/api/v1/
+```
+
+Main endpoints:
+
+- `GET /api/v1/`
+- `GET /api/v1/rooms`
+- `POST /api/v1/rooms`
+- `GET /api/v1/rooms/{roomId}`
+- `DELETE /api/v1/rooms/{roomId}`
+- `GET /api/v1/sensors`
+- `POST /api/v1/sensors`
+- `GET /api/v1/sensors/{sensorId}`
+- `GET /api/v1/sensors/{sensorId}/readings`
+- `POST /api/v1/sensors/{sensorId}/readings`
 
 ## How To Run
 
@@ -33,26 +54,7 @@ This will redirect to the API entry point:
 http://localhost:8080/CW/api/v1/
 ```
 
-## API Structure
 
-Base URL:
-
-```text
-http://localhost:8080/CW/api/v1/
-```
-
-Main endpoints:
-
-- `GET /api/v1/`
-- `GET /api/v1/rooms`
-- `POST /api/v1/rooms`
-- `GET /api/v1/rooms/{roomId}`
-- `DELETE /api/v1/rooms/{roomId}`
-- `GET /api/v1/sensors`
-- `POST /api/v1/sensors`
-- `GET /api/v1/sensors/{sensorId}`
-- `GET /api/v1/sensors/{sensorId}/readings`
-- `POST /api/v1/sensors/{sensorId}/readings`
 
 ## Sample curl Commands
 
