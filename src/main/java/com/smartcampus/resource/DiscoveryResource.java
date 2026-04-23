@@ -15,6 +15,8 @@ public class DiscoveryResource {
     public Map<String, String> getDiscovery() {
         Map<String, String> response = new LinkedHashMap<String, String>();
         response.put("version", "v1");
+        response.put("adminName", "NEthul Trevor");
+        response.put("adminEmail", "nethul.20231874@iit.ac.lk");
         response.put("rooms", "/api/v1/rooms");
         response.put("sensors", "/api/v1/sensors");
         return response;

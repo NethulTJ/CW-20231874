@@ -135,6 +135,8 @@ Expected response:
 ```json
 {
   "version": "v1",
+  "adminName": "NEthul Trevor",
+  "adminEmail": "nethul.20231874@iit.ac.lk",
   "rooms": "/api/v1/rooms",
   "sensors": "/api/v1/sensors"
 }
