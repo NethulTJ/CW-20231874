@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/")
 public class DiscoveryResource {
@@ -20,5 +21,12 @@ public class DiscoveryResource {
         response.put("rooms", "/api/v1/rooms");
         response.put("sensors", "/api/v1/sensors");
         return response;
+    }
+
+    @GET
+    @Path("/test-error")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response triggerServerError() {
+        throw new RuntimeException("Intentional test exception for 500 error handling.");
     }
 }
