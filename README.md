@@ -17,11 +17,7 @@ Build the WAR file:
 mvn clean package
 ```
 
-If `mvn` is not on your PATH in PowerShell, use:
-
-```powershell
-& "D:\Program Files [D]\Apache NetBeans\java\maven\bin\mvn.cmd" clean package
-```
+If `mvn` is not on your PATH, use a local Maven installation or the Maven bundled with your IDE.
 
 Deploy the generated WAR to Apache Tomcat.
 
