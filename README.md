@@ -54,6 +54,74 @@ Main endpoints:
 - `GET /api/v1/sensors/{sensorId}/readings`
 - `POST /api/v1/sensors/{sensorId}/readings`
 
+## Sample curl Commands
+
+Discovery endpoint:
+
+```bash
+curl -X GET http://localhost:8080/CW/api/v1/
+```
+
+Create a room:
+
+```bash
+curl -X POST http://localhost:8080/CW/api/v1/rooms \
+  -H "Content-Type: application/json" \
+  -d "{\"id\":\"ENG-101\",\"name\":\"Engineering Lab\",\"capacity\":35}"
+```
+
+Get all rooms:
+
+```bash
+curl -X GET http://localhost:8080/CW/api/v1/rooms
+```
+
+Get a room by ID:
+
+```bash
+curl -X GET http://localhost:8080/CW/api/v1/rooms/ENG-101
+```
+
+Create a sensor:
+
+```bash
+curl -X POST http://localhost:8080/CW/api/v1/sensors \
+  -H "Content-Type: application/json" \
+  -d "{\"id\":\"CO2-001\",\"type\":\"CO2\",\"status\":\"ACTIVE\",\"currentValue\":450.0,\"roomId\":\"ENG-101\"}"
+```
+
+Get all sensors:
+
+```bash
+curl -X GET http://localhost:8080/CW/api/v1/sensors
+```
+
+Filter sensors by type:
+
+```bash
+curl -X GET "http://localhost:8080/CW/api/v1/sensors?type=CO2"
+```
+
+Add a reading:
+
+```bash
+curl -X POST http://localhost:8080/CW/api/v1/sensors/CO2-001/readings \
+  -H "Content-Type: application/json" \
+  -d "{\"value\":470.5}"
+```
+
+Get sensor readings:
+
+```bash
+curl -X GET http://localhost:8080/CW/api/v1/sensors/CO2-001/readings
+```
+
+Get updated parent sensor:
+
+```bash
+curl -X GET http://localhost:8080/CW/api/v1/sensors/CO2-001
+```
+
 ## Discovery Endpoint
 
 Use:
