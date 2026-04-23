@@ -1,13 +1,7 @@
 package com.mycompany.cw;
 
-import jakarta.ws.rs.ApplicationPath;
-import org.glassfish.jersey.server.ResourceConfig;
-
-@ApplicationPath("/api/v1")
-public class RestApplication extends ResourceConfig {
-    public RestApplication() {
-        register(ApiResource.class);
-        register(ApiExceptionMapper.class);
-        register(ApiLoggingFilter.class);
-    }
-}
+/*
+ * Legacy configuration file kept only because this workspace currently blocks
+ * moving or deleting it. The active coursework application now uses Jersey
+ * servlet deployment configured in src/main/webapp/WEB-INF/web.xml.
+ */

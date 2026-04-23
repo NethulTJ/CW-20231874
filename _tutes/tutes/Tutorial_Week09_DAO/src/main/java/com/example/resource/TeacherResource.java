@@ -1,0 +1,51 @@
+package com.example.resource;
+
+import com.example.dao.GenericDAO;
+import com.example.dao.MockDatabase;
+import com.example.model.Teacher;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.util.List;
+
+@Path("/teachers")
+public class TeacherResource {
+    
+    private GenericDAO<Teacher> teacherDAO = new GenericDAO<>(MockDatabase.TEACHERS);
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Teacher> getAllTeachers() {
+        return teacherDAO.getAll();
+    }
+
+    @GET
+    @Path("/{teacherId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Teacher getTeacherById(@PathParam("teacherId") int teacherId) {
+        return teacherDAO.getById(teacherId);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addTeacher(Teacher teacher) {
+        teacherDAO.add(teacher);
+    }
+
+    @PUT
+    @Path("/{teacherId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateTeacher(@PathParam("teacherId") int teacherId, Teacher updatedTeacher) {
+        Teacher existingTeacher = teacherDAO.getById(teacherId);
+
+        if (existingTeacher != null) {
+            updatedTeacher.setId(teacherId);
+            teacherDAO.update(updatedTeacher);
+        }
+    }
+
+    @DELETE
+    @Path("/{teacherId}")
+    public void deleteTeacher(@PathParam("teacherId") int teacherId) {
+        teacherDAO.delete(teacherId);
+    }
+}
